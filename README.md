@@ -1,25 +1,6 @@
 # Introduction
 
-![](_static/HOL1727.jpg)
-
-Docker’s popularity has exploded over the last couple of years,
-especially in the DevOps space, but unless you’ve spent a lot 
-of time in that area, Docker can be a confusing technology to
-wrap your head around. 
-
-So let’s step back and start looking at 
-Docker from, well, `FROM` scratch (and you’ll come to understand
-just what that means). 
-
-With minimal starting knowledge of Docker, you’ll find out what 
-it is and learn about all the core concepts — from images to 
-containers and volumes to networks — and how to compose
-environments. 
-
-This hands-on lab also looks at how to use Docker in dev, 
-not just DevOps, and how containers can be useful tools
-without being something to run production infrastructure on.
-
+Companion project to [this](http://ivo2u.nl/ox) Hands-on Lab.
  
 ## Usage
 
