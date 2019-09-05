@@ -1,4 +1,4 @@
-FROM golang:1.12.9-alpine3.9 as builder
+FROM SOME_IMAGE_HERE as builder
 
 # build the hello-world.go application here
 

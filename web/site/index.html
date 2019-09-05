@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Docker Course</title>
+</head>
+<body>
+<h1>Quote of the day...</h1>
+
+<div id="content">
+    Hello, World
+</div>
+<div id="author">
+
+</div>
+
+<p>
+    <input id="quote" type="text" value="1"/>
+    <button type="submit" onclick="httpGet()">Quote</button>
+</p>
+
+<script>
+    "use strict";
+
+    function httpGet() {
+        var value = document.getElementById("quote").value;
+        var req = new XMLHttpRequest();
+        req.open("GET", "http://payara:8080/back-end/rest/quote/" + value, false); // false for synchronous request
+        req.send(null);
+        var resp = JSON.parse(req.responseText);
+        document.getElementById("content").innerHTML = resp.quote;
+        document.getElementById("author").innerHTML = "--" + resp.author;
+    }
+</script>
+</body>
+</html>
