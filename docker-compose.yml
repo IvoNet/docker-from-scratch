@@ -49,9 +49,9 @@ services:
     ports:
       - "3000:3000"
     links:
-      - payara
+      - quote-service
     depends_on:
-      - payara
+      - quote-service
     networks:
       - frontend
 
