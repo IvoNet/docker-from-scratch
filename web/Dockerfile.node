@@ -1,8 +1,0 @@
-FROM node:12.9.1-alpine
-
-WORKDIR /app
-COPY site/* /app/
-RUN npm install
-
-EXPOSE 3000
-ENTRYPOINT ["/usr/local/bin/node", "server.js", "3000"]

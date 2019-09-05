@@ -1,5 +1,3 @@
-#TODO will be used in the 'Composing images' section of the Hands-on Lab
-
 version: '3'
 
 services:
@@ -28,35 +26,11 @@ services:
     networks:
       - backend
 
-  quote-service:
-    image: back-end
-    ports:
-      - "8080:8080"
-      - "4848:4848"
-    links:
-      - mysql
-    depends_on:
-      - mysql
-    networks:
-      - frontend
-      - backend
+# TODO add quote-service
 
-  web:
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    image: web
-    ports:
-      - "3000:3000"
-    links:
-      - quote-service
-    depends_on:
-      - quote-service
-    networks:
-      - frontend
+# TODO add web-service
 
 networks:
-  frontend:
   backend:
 
 volumes:
