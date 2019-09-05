@@ -1,6 +1,6 @@
 #TODO will be used in the 'Composing images' section of the Hands-on Lab
 
-version: '3.7'
+version: '3'
 
 services:
   mysql: #How to configure this image: https://hub.docker.com/_/mysql
@@ -8,10 +8,10 @@ services:
     volumes:
       - ./quotes:/docker-entrypoint-initdb.d
       - mysql-data:/var/lib/mysql
-    ports:
-      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=secret
+    networks:
+      - backend
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.7
@@ -25,18 +25,21 @@ services:
       - PMA_HOST=mysql
     depends_on:
       - mysql
+    networks:
+      - backend
 
-  payara:
+  quote-service:
     image: back-end
     ports:
       - "8080:8080"
       - "4848:4848"
-      - "8181:8181"
-      - "8009:8009"
     links:
-      - mysql:mysql
+      - mysql
     depends_on:
       - mysql
+    networks:
+      - frontend
+      - backend
 
   web:
     build:
@@ -49,6 +52,12 @@ services:
       - payara
     depends_on:
       - payara
+    networks:
+      - frontend
+
+networks:
+  frontend:
+  backend:
 
 volumes:
   mysql-data:
