@@ -1,6 +1,6 @@
 # ssh config
 
-This folder has a public and private key configured 
+This directory has a public and private key configured 
 for the vagrant machines.
 These keys a there just for demo purposes and should not be used
 on any system for realz like :-)
