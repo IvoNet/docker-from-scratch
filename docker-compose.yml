@@ -12,17 +12,7 @@ services:
       - MYSQL_ROOT_PASSWORD=secret
     networks:
       - backend
-#  mysql: #How to configure this image: https://hub.docker.com/_/mysql
-#    image: ivonet/mysql-quote-db
-#    ports:
-#      - 3306:3306
-#    environment:
-#      - MYSQL_ROOT_PASSWORD=secret
-#    networks:
-#      - backend
 
-# commented out to make it more production like...
-#
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.7
     ports:
