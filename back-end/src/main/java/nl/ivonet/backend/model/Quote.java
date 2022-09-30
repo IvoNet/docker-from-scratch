@@ -14,7 +14,30 @@
  * limitations under the License.
  */
 
+package nl.ivonet.backend.model;
+
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
- * Restful services here
+ * @author Ivo Woltring
  */
-package nl.ivonet.service;
+@Data
+@Entity
+@Table(name = "quote")
+public class Quote {
+
+    private Integer id;
+    private String author;
+    private String quote;
+
+    @Id
+    public Integer getId() {
+        return this.id;
+    }
+
+
+}

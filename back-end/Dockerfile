@@ -1,2 +1,5 @@
-FROM ivonet/dfs-server:1.0.3
-COPY artifact/back-end.war $DEPLOY_DIR
+FROM amazoncorretto:17
+
+ADD target/back-end.jar /opt/app.jar
+
+CMD ["java", "-jar", "/opt/app.jar"]

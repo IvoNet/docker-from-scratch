@@ -2,36 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Docker Course</title>
+    <title>Docker FROM scratch</title>
 </head>
 <body>
 <h1>Quote of the day...</h1>
 
-<div id="content">
-    Hello, World
-</div>
-<div id="author">
-
-</div>
+<div id="content"></div>
+<div id="author"></div>
 
 <p>
-    <input id="quote" type="text" value="1"/>
-    <button type="submit" onclick="httpGet()">Quote</button>
+    <label for="quote"></label><input id="quote" type="text"/>
+    <button id="submit" type="submit" onclick="httpGet()">Quote</button>
 </p>
 
 <script>
     "use strict";
 
     function httpGet() {
-        var value = document.getElementById("quote").value;
-        var req = new XMLHttpRequest();
-        req.open("GET", "http://localhost:8080/back-end/rest/quote/" + value, false);
-        // req.open("GET", "http://192.168.10.100:8080/back-end/rest/quote/" + value, false);
+        let quoteNr = Math.floor(Math.random() * 35) + 1;
+        let value = document.getElementById("quote").value || quoteNr;
+        document.getElementById("quote").value = value;
+        const req = new XMLHttpRequest();
+        // do a XMLHttpRequest to the server
+        req.open("GET", "http://localhost:8080/api/quote/" + value, true);
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                var json = JSON.parse(req.responseText);
+                document.getElementById("content").innerHTML = json.quote;
+                document.getElementById("author").innerHTML = "--" + json.author;
+            }
+        };
         req.send(null);
-        var resp = JSON.parse(req.responseText);
-        document.getElementById("content").innerHTML = resp.quote;
-        document.getElementById("author").innerHTML = "--" + resp.author;
     }
+
+    // do an initial request
+    httpGet()
 </script>
 </body>
 </html>

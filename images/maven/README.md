@@ -10,3 +10,4 @@ docker build -t <your_account_name_here>/maven .
 
 ## Usage:
 
+see mvn.sh script

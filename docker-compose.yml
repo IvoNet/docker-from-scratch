@@ -3,13 +3,15 @@
 version: '3'
 
 services:
-  mariadb: #How to configure this image: https://hub.docker.com/_/mariadb
+  db: #How to configure this image: https://hub.docker.com/_/mariadb
     image: mariadb:10.7.3
     volumes:
       - ./quotes:/docker-entrypoint-initdb.d
       - mariadb-data:/var/lib/mysql
     environment:
       - MARIADB_ROOT_PASSWORD=secret
+    ports:
+      - "3306:3306"
     networks:
       - backend
 
@@ -18,25 +20,24 @@ services:
     ports:
       - "8888:80"
     links:
-      - mysql
+      - db
     environment:
       - MYSQL_USERNAME=root
       - MYSQL_ROOT_PASSWORD=secret
-      - PMA_HOST=mariadb
+      - PMA_HOST=db
     depends_on:
-      - mariadb
+      - db
     networks:
       - backend
 
   quote-service:
-    image: back-end
+    image: dfs/back-end
     ports:
       - "8080:8080"
-      - "4848:4848"
     links:
-      - mariadb
+      - db
     depends_on:
-      - mariadb
+      - db
     networks:
       - frontend
       - backend
