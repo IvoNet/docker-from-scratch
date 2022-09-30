@@ -15,7 +15,7 @@ git clone https://github.com/IvoNet/docker-from-scratch.git
 ## License
 
 ```text
-     Copyright 2019-2020 (c) Ivo Woltring
+     Copyright 2019-2022 (c) Ivo Woltring
  
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.

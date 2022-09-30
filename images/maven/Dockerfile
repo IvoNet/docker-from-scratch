@@ -1,4 +1,4 @@
-FROM openjdk:12-alpine
+FROM openjdk:17-alpine
 
 RUN apk add maven
 

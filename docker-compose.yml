@@ -1,38 +1,65 @@
+#TODO will be used in the 'Composing images' section of the Hands-on Lab
+
 version: '3'
 
 services:
-  mysql: #How to configure this image: https://hub.docker.com/_/mysql
-    image: mysql:5.7.27
+  db:
+    image: mariadb:10.7.3
     volumes:
       - ./quotes:/docker-entrypoint-initdb.d
-      - mysql-data:/var/lib/mysql
+      - mariadb-data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=secret
+      - MARIADB_ROOT_PASSWORD=secret
+#    ports:
+#      - "3306:3306"
     networks:
       - backend
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.7
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin:4.7
+#    ports:
+#      - "8888:80"
+#    links:
+#      - db
+#    environment:
+#      - MYSQL_USERNAME=root
+#      - MYSQL_ROOT_PASSWORD=secret
+#      - PMA_HOST=db
+#    depends_on:
+#      - db
+#    networks:
+#      - backend
+
+  quote-service:
+    image: dfs/back-end
     ports:
-      - "8888:80"
+      - "8080:8080"
     links:
-      - mysql
-    environment:
-      - MYSQL_USERNAME=root
-      - MYSQL_ROOT_PASSWORD=secret
-      - PMA_HOST=mysql
+      - db
     depends_on:
-      - mysql
+      - db
     networks:
+      - frontend
       - backend
 
-# TODO add quote-service
-
-# TODO add web-service
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: web
+    ports:
+      - "3000:3000"
+    links:
+      - quote-service
+    depends_on:
+      - quote-service
+    networks:
+      - frontend
 
 networks:
+  frontend:
   backend:
 
 volumes:
-  mysql-data:
+  mariadb-data:
     driver: local

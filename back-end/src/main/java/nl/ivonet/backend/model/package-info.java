@@ -14,10 +14,7 @@
  * limitations under the License.
  */
 
-package nl.ivonet.config;
-import javax.ws.rs.ApplicationPath;
-
-@SuppressWarnings({"EmptyClass", "SuppressionAnnotation"})
-@ApplicationPath("rest")
-public class BootStrap extends javax.ws.rs.core.Application {
-}
+/**
+ * Model classes here
+ */
+package nl.ivonet.backend.model;
