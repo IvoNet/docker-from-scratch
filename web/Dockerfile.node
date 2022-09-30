@@ -1,8 +1,8 @@
-FROM node:17-alpine3.15
+FROM node:17
 
-WORKDIR /app
-COPY site/* /app/
+WORKDIR /site
+COPY site /site
+
 RUN npm install
 
-EXPOSE 3000
-ENTRYPOINT ["/usr/local/bin/node", "server.js", "3000"]
+CMD ["npm", "run", "start"]

@@ -10,8 +10,6 @@ services:
       - mariadb-data:/var/lib/mysql
     environment:
       - MARIADB_ROOT_PASSWORD=secret
-#    ports:
-#      - "3306:3306"
     networks:
       - backend
 
