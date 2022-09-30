@@ -1,6 +1,9 @@
-FROM openjdk:17-alpine
+FROM openjdk:17
 
-RUN apk add maven
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y  maven \
+ && apt-get clean  \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY setup/ /
 RUN chmod +x /entrypoint.sh

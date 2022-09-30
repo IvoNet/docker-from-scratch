@@ -1,8 +1,7 @@
-FROM golang:1.13.6-alpine3.11 as builder
-WORKDIR /
-COPY hello-world.go /hello-world.go
-RUN go build hello-world.go
+FROM SOME_IMAGE_HERE as builder
+
+# build the hello-world.go application here
 
 FROM scratch
-COPY --from=builder /hello-world /hello-world
-CMD ["/hello-world"]
+
+# Get the compiled app and give it startup command

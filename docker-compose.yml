@@ -10,51 +10,12 @@ services:
       - mariadb-data:/var/lib/mysql
     environment:
       - MARIADB_ROOT_PASSWORD=secret
-#    ports:
-#      - "3306:3306"
     networks:
       - backend
 
-#  phpmyadmin:
-#    image: phpmyadmin/phpmyadmin:4.7
-#    ports:
-#      - "8888:80"
-#    links:
-#      - db
-#    environment:
-#      - MYSQL_USERNAME=root
-#      - MYSQL_ROOT_PASSWORD=secret
-#      - PMA_HOST=db
-#    depends_on:
-#      - db
-#    networks:
-#      - backend
+# TODO add quote-service
 
-  quote-service:
-    image: dfs/back-end
-    ports:
-      - "8080:8080"
-    links:
-      - db
-    depends_on:
-      - db
-    networks:
-      - frontend
-      - backend
-
-  web:
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    image: web
-    ports:
-      - "3000:3000"
-    links:
-      - quote-service
-    depends_on:
-      - quote-service
-    networks:
-      - frontend
+# TODO add web-service
 
 networks:
   frontend:
