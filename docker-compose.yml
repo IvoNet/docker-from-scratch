@@ -3,15 +3,9 @@
 version: '3'
 
 services:
-  db:
-    image: mariadb:10.7.3
-    volumes:
-      - ./quotes:/docker-entrypoint-initdb.d
-      - mariadb-data:/var/lib/mysql
-    environment:
-      - MARIADB_ROOT_PASSWORD=secret
-    networks:
-      - backend
+# TODO add the db service
+
+# TODO add the phpmyadmin service
 
 # TODO add quote-service
 
