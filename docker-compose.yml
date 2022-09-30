@@ -3,32 +3,32 @@
 version: '3'
 
 services:
-  db: #How to configure this image: https://hub.docker.com/_/mariadb
+  db:
     image: mariadb:10.7.3
     volumes:
       - ./quotes:/docker-entrypoint-initdb.d
       - mariadb-data:/var/lib/mysql
     environment:
       - MARIADB_ROOT_PASSWORD=secret
-    ports:
-      - "3306:3306"
+#    ports:
+#      - "3306:3306"
     networks:
       - backend
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.7
-    ports:
-      - "8888:80"
-    links:
-      - db
-    environment:
-      - MYSQL_USERNAME=root
-      - MYSQL_ROOT_PASSWORD=secret
-      - PMA_HOST=db
-    depends_on:
-      - db
-    networks:
-      - backend
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin:4.7
+#    ports:
+#      - "8888:80"
+#    links:
+#      - db
+#    environment:
+#      - MYSQL_USERNAME=root
+#      - MYSQL_ROOT_PASSWORD=secret
+#      - PMA_HOST=db
+#    depends_on:
+#      - db
+#    networks:
+#      - backend
 
   quote-service:
     image: dfs/back-end
