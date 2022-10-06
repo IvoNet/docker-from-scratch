@@ -8,6 +8,8 @@ services:
     volumes:
       - ./quotes:/docker-entrypoint-initdb.d
       - mariadb-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
     environment:
       - MARIADB_ROOT_PASSWORD=secret
     networks:
@@ -17,8 +19,6 @@ services:
     image: phpmyadmin/phpmyadmin:4.7
     ports:
       - "8888:80"
-    links:
-      - db
     environment:
       - MYSQL_USERNAME=root
       - MYSQL_ROOT_PASSWORD=secret
@@ -30,10 +30,9 @@ services:
 
   quote-service:
     image: dfs/back-end
+    command: java -jar /opt/app.jar --spring.profiles.active=docker
     ports:
       - "8080:8080"
-    links:
-      - db
     depends_on:
       - db
     networks:
@@ -47,8 +46,6 @@ services:
     image: web
     ports:
       - "3000:3000"
-    links:
-      - quote-service
     depends_on:
       - quote-service
     networks:
