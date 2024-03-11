@@ -29,7 +29,7 @@ services:
       - backend
 
   quote-service:
-    image: dfs/back-end
+    image: ivonet/back-end
     command: java -jar /opt/app.jar --spring.profiles.active=docker
     ports:
       - "8080:8080"
