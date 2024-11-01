@@ -1,7 +1,5 @@
 #TODO will be used in the 'Composing images' section of the Hands-on Lab
 
-version: '3'
-
 services:
   db:
     image: mariadb:10.7.3
